@@ -115,7 +115,7 @@ function dirscribe(root, opts) {
             statCache = stat;
             return build(filePath, stat, root);
         }).then(function (desc) {
-            if (recursive && statCache.isDirectory()) {
+            if (recursive && statCache.isDirectory() && Path.basename(filePath) != 'node_modules') {
                 return readdir(filePath).then(function (children) {
                     desc.children = children;
                     return desc;
